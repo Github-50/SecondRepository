@@ -29,12 +29,11 @@ public class ProductService {
 		Optional<Product> product = repository.getProductById(id);
 		if(!product.isPresent()) {
 			logger.logError("#####No Record found with id: "+ id);
-			throw new NoRecordsFoundException("#IN PRODUCTSERVICE - No Record found with id: "+ id+"#.");
+			throw new NoRecordsFoundException("#IN PRODUCTSERVICE No Record found with id: "+ id+".");
 		}
 		ProductTO productTO = new ProductTO();
-		BeanUtils.copyProperties(product.get(), productTO);
+		BeanUtils.copyProperties(product, productTO);
 		logger.logInfo("Product id found.");
-		logger.getLogger().info("#Found#");
 		return productTO;
 	}
 	
